@@ -1,0 +1,11 @@
+{
+  "name": "filmnotes",
+  "version": "1.0.0",
+  "description": "A simple to use tool to keep track of analog photos ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Thomas A Morgan",
+  "license": "MIT"
+}
