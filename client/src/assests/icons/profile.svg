@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="63px" height="64px" viewBox="0 0 63 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>profile</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-25.0%" y="-26.9%" width="150.0%" height="151.9%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="2" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons" transform="translate(-310.000000, -47.000000)" fill="#F8F8F8">
+            <g id="profile" filter="url(#filter-1)" transform="translate(313.000000, 50.000000)">
+                <path d="M2.88657986e-15,33.8990494 C4.63857032,29.1477672 14.586336,25.8631579 26.1096747,25.8631579 C38.6135398,25.8631579 49.2622916,29.7305271 53.2858217,35.142654 C49.5059943,45.6645781 39.8852483,53.3037993 28.4399878,53.9549072 C27.8154757,53.9791754 27.1853665,53.9937747 26.5502917,53.9983974 C14.0909367,53.8653294 3.57151495,45.4592302 -3.47877283e-12,33.8990494 Z" id="Combined-Shape"></path>
+                <ellipse id="Oval" stroke="#B8B8B8" cx="26.2021657" cy="16.3346056" rx="15.5579268" ry="15.9232891"></ellipse>
+                <ellipse id="Oval-Copy-2" cx="26.2021657" cy="15.7192128" rx="15.5579268" ry="15.3078963"></ellipse>
+            </g>
+        </g>
+    </g>
+</svg>

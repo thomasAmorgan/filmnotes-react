@@ -1,0 +1,16 @@
+@import "./colors.scss";
+@import "./fonts.scss";
+@import "./App.scss";
+@import "./mediaqueries.scss";
+
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  margin: 0;
+  font-family: $avenir-light;
+}
+#root {
+  height: 100%;
+}

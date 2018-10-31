@@ -1,0 +1,25 @@
+.sidebar {
+  display: grid;
+  grid-template-areas: "links content";
+  grid-template-columns: 55px 220px;
+
+  .navlinks {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-between;
+    background: $nav-link-grey;
+
+    .navbar-link {
+      img {
+        width: 40px;
+        margin: 10px 0;
+      }
+    }
+  }
+
+  .sidebar-content {
+    background: $sidebar-grey;
+    overflow-y: scroll;
+  }
+}

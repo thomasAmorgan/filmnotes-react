@@ -1,0 +1,43 @@
+@font-face {
+  font-family: "Futura-local";
+  src: url("../fonts/futura/futura-medium.ttf");
+}
+@font-face {
+  font-family: "Futura-local-italic";
+  src: url("../fonts/futura/futura-medium-italic\ font.ttf");
+}
+@font-face {
+  font-family: "Futura-local-condensed";
+  src: url("../fonts/futura/futura-medium-condensed.ttf");
+}
+
+$futura: "Futura-local";
+$futura-italic: "Futura-local-italic";
+$futura-condensed: "Futura-local-condensed";
+
+@font-face {
+  font-family: "Avenir-local-book";
+  src: url("../fonts/avenir/avenir-book.otf");
+}
+@font-face {
+  font-family: "Avenir-local-book-italic";
+  src: url("../fonts/avenir/avenir-book-italic.otf");
+}
+@font-face {
+  font-family: "Avenir-local-light";
+  src: url("../fonts/avenir/avenir-light.otf");
+}
+@font-face {
+  font-family: "Avenir-local-light-italic";
+  src: url("../fonts/avenir/avenir-light-italic.otf");
+}
+@font-face {
+  font-family: "Avenir-local-roman";
+  src: url("../fonts/avenir/avenir-roman.otf");
+}
+
+$avenir-book: "Avenir-local-book";
+$avenir-book-italic: "Avenir-local-book-italic";
+$avenir-light: "Avenir-local-light";
+$avenir-light-italic: "Avenir-local-light-italic";
+$avenir-roman: "Avenir-local-roman";

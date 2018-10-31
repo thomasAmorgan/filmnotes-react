@@ -1,0 +1,43 @@
+.roll-exposures {
+  .roll-exposures-header {
+    display: flex;
+    font-family: $futura-italic;
+    font-size: 1.5rem;
+
+    .roll-exposures-btn {
+      width: 40px;
+      height: 40px;
+      margin: 0 0 0 15px;
+
+      img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+
+  .roll-exposures-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    .roll-exposures-item {
+      background: $white;
+      color: $black;
+      padding: 10px;
+      margin: 10px;
+      box-shadow: $shadow;
+
+      .exposure-header {
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold;
+      }
+
+      .exposure-stats {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0;
+      }
+    }
+  }
+}

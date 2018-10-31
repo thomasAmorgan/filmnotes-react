@@ -1,0 +1,28 @@
+@import "./components/navbar.scss";
+@import "./components/rolllist.scss";
+@import "./components/rollview.scss";
+@import "./components/rollexposures.scss";
+
+.App {
+  height: 100%;
+  display: grid;
+  grid-template-areas: "nav content";
+  grid-template-columns: 275px auto;
+
+  .page-content {
+    padding: 5% 5% 0;
+    background: $content-background;
+  }
+}
+
+@media (max-width: 992px) {
+  .App {
+    grid-template-columns: 1fr;
+    grid-template-rows: 130px auto;
+    grid-template-areas: "content";
+
+    .page-content {
+      overflow-y: scroll;
+    }
+  }
+}

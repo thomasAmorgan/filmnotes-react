@@ -1,0 +1,77 @@
+.roll-view {
+  display: flex;
+  flex-flow: column;
+  color: $white;
+  height: 100%;
+  font-size: 1.2rem;
+  overflow-y: scroll;
+
+  hr {
+    width: 99%;
+    border: 0.5px solid $white;
+    margin: 25px 0;
+  }
+
+  .roll-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: $futura-italic;
+    font-size: 1.3rem;
+
+    .roll-title {
+      font-size: 2.2rem;
+    }
+
+    .roll-edit-btn {
+      height: 40px;
+      width: 40px;
+
+      img {
+        height: 40px;
+        width: 40px;
+        display: flex;
+        align-self: baseline;
+      }
+    }
+  }
+
+  .roll-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    margin: 0 0 25px 0;
+    font-family: $futura-italic;
+    font-size: 1.3rem;
+  }
+
+  .roll-tags {
+    font-family: $futura-italic;
+    font-size: 1.3rem;
+
+    .roll-tags-header {
+      margin: 0 0 10px 0;
+    }
+
+    .roll-tags-list {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-evenly;
+
+      .roll-tags-item {
+        background: $white;
+        color: $black;
+        padding: 5px 10px;
+        box-shadow: $shadow;
+      }
+    }
+  }
+
+  .roll-notes {
+    div:first-child {
+      font-size: 1.5rem;
+      font-family: $futura-italic;
+      margin: 0 0 10px 0;
+    }
+  }
+}

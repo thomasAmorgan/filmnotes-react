@@ -1,0 +1,63 @@
+.roll-list-view {
+  display: flex;
+  flex-flow: column;
+  color: $white;
+
+  .roll-list-item {
+    display: flex;
+    flex-flow: column;
+    position: relative;
+    padding: 5px;
+    z-index: 5;
+
+    &:hover,
+    &:focus {
+      cursor: pointer;
+      background: $sidebar-active;
+    }
+
+    .roll-title-group {
+      display: flex;
+      flex-flow: row;
+      justify-content: space-between;
+      align-items: baseline;
+      margin: 0 0 5px 0;
+
+      .roll-item-title {
+        font-size: 1.3rem;
+        font-family: $futura-italic;
+      }
+      .roll-item-date {
+        font-weight: bold;
+      }
+    }
+
+    .roll-item-stock,
+    .roll-item-iso,
+    .roll-item-camera {
+      font-size: 0.8rem;
+    }
+
+    .roll-add-btn {
+      position: absolute;
+      width: 35px;
+      height: 35px;
+      bottom: 0;
+      right: 0;
+      z-index: 10;
+
+      &:hover,
+      &:focus {
+        cursor: pointer;
+      }
+
+      img {
+        width: 35px;
+        height: 35px;
+      }
+    }
+  }
+}
+.active-roll {
+  background: $sidebar-active;
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="63px" height="63px" viewBox="0 0 63 63" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>edit</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-25.0%" y="-25.8%" width="150.0%" height="152.6%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="2" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons" transform="translate(-608.000000, -47.000000)">
+            <g id="edit" filter="url(#filter-1)" transform="translate(611.000000, 50.000000)">
+                <rect id="Rectangle" stroke="#F8F8F8" stroke-width="5" x="2.5" y="12.0294118" width="37.8823529" height="37.8823529" rx="4"></rect>
+                <path d="M39.4234844,33.5855329 L35.916291,39.0411669 L32.4090977,33.5855329 L32.3427616,33.5855329 L32.3427616,-3.73799656 L39.4898205,-3.73799656 L39.4898205,33.5855329 L39.4234844,33.5855329 Z" id="Combined-Shape" fill="#BABABA" transform="translate(35.916291, 17.651585) rotate(45.000000) translate(-35.916291, -17.651585) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

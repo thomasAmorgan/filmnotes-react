@@ -1,0 +1,25 @@
+<svg width="65px" height="64px" viewBox="0 0 65 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <filter x="-25.0%" y="-25.0%" width="150.0%" height="150.0%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="2" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons" transform="translate(-45.000000, -48.000000)">
+            <g id="Film" filter="url(#filter-1)" transform="translate(48.183766, 51.000000)">
+                <path d="M53.5,37.5 L53.5,11 L54,11.5 C52.6741071,11.5 52.6741071,11.5 46.0446429,11.5 C36.870686,11.5 36.7646332,11.5 22.6785714,11.5 L22.6785714,46.5 L37.3862233,46.5 L39.0357143,44.6887943 L39.0357143,40.5 L39.5357143,40.5 L42.850509,40.5 L45.5826519,37.5 L53.5,37.5 Z M24.1907895,16.9 L24.1907895,12.3 L29.3778195,12.3 L29.3778195,16.9 L24.1907895,16.9 Z M31.7274436,16.9 L31.7274436,12.3 L36.9144737,12.3 L36.9144737,16.9 L31.7274436,16.9 Z M39.2640977,16.9 L39.2640977,12.3 L44.4511278,12.3 L44.4511278,16.9 L39.2640977,16.9 Z M46.8007519,16.9 L46.8007519,12.3 L51.987782,12.3 L51.987782,16.9 L46.8007519,16.9 Z M24.5714286,45.5 L24.5714286,40.5 L29.4285714,40.5 L29.4285714,45.5 L24.5714286,45.5 Z M32.2857143,40.5 L37.1428571,40.5 L37.1428571,45.5 L32.2857143,45.5 L32.2857143,40.5 Z" id="Combined-Shape" stroke="#000000" fill="#000000"></path>
+                <path d="M10.6071429,4 L10.6071429,0 L17.3571429,0 L21.2142857,0 L21.2142857,4 L31.8214286,4 L31.8214286,9 L29.8928571,9 L29.8928571,49 L31.8214286,49 L31.8214286,54 L0,54 L0,49 L2.89285714,49 L2.89285714,9 L0,9 L0,4 L10.6071429,4 Z" id="Combined-Shape" fill="#CACACA"></path>
+                <rect id="Rectangle" fill="#9B9B9B" x="2.89285714" y="11" width="20.25" height="36"></rect>
+                <path d="M3.375,8.5 L29.4107143,8.5" id="Line"></path>
+                <path d="M3.375,49.5 L29.4107143,49.5" id="Line-2"></path>
+                <path d="M11.0892857,4.5 L20.7321429,4.5" id="Line-3"></path>
+            </g>
+        </g>
+    </g>
+</svg>

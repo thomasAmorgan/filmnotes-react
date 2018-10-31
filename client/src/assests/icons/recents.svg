@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="79px" height="68px" viewBox="0 0 79 68" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>recents</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-25.8%" y="-28.7%" width="150.0%" height="157.4%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="2" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons" transform="translate(-694.000000, -46.000000)" stroke="#F8F8F8">
+            <g id="recents" filter="url(#filter-1)" transform="translate(699.596830, 51.000000)">
+                <circle id="Oval" stroke-width="4" cx="37" cy="27" r="27"></circle>
+                <path d="M37,13.2058824 L37,27" id="Line-7" stroke-width="3" stroke-linecap="square"></path>
+                <path d="M34.8726728,35.0569491 L51.9038957,35.4105025" id="Line-8" stroke-width="3" stroke-linecap="square" transform="translate(43.872673, 35.056949) rotate(46.000000) translate(-43.872673, -35.056949) "></path>
+                <path d="M11.5968299,27 L20.9031701,17.5" id="Line-9" stroke-width="4" stroke-linecap="square"></path>
+                <path d="M0,28.5828909 L9.90317014,18.5" id="Line-9-Copy" stroke-width="4" stroke-linecap="square" transform="translate(5.000000, 23.500000) scale(-1, 1) translate(-5.000000, -23.500000) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

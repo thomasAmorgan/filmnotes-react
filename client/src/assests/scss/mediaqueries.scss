@@ -1,0 +1,56 @@
+@media (max-width: 992px) {
+  .sidebar {
+    grid-template-areas: "nav";
+    grid-template-columns: 1fr;
+    grid-template-rows: 40px auto;
+
+    .navlinks {
+      flex-flow: row;
+
+      .navbar-link {
+        margin: 0 10px;
+        height: 30px;
+
+        img {
+          width: 30px;
+          margin: 0;
+        }
+      }
+    }
+    .sidebar-content {
+      overflow-x: scroll;
+      overflow-y: hidden;
+    }
+  }
+
+  .roll-list-view {
+    flex-flow: row;
+    height: 100%;
+
+    .roll-list-item {
+      min-width: 175px;
+
+      .roll-item-description {
+        display: none;
+      }
+    }
+  }
+
+  .roll-view {
+    display: block;
+    overflow-y: inherit;
+    overflow-x: hidden;
+
+    .roll-stats {
+      display: flex;
+      flex-flow: column wrap;
+    }
+  }
+
+  .roll-exposures {
+    .roll-exposures-list {
+      display: flex;
+      flex-flow: column wrap;
+    }
+  }
+}

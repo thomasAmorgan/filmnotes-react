@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="58px" height="69px" viewBox="0 0 58 69" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>trash</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-28.1%" y="-22.9%" width="156.2%" height="145.8%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="2" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons" transform="translate(-221.000000, -169.000000)">
+            <g id="trash" filter="url(#filter-1)" transform="translate(224.000000, 172.000000)">
+                <rect id="Rectangle" fill="#F8F8F8" x="4" y="9" width="40" height="50"></rect>
+                <path d="M24,16.5 L24,52.5" id="Line-10" stroke="#979797" stroke-linecap="square"></path>
+                <path d="M13,16.5 L13,52.5" id="Line-10-Copy-2" stroke="#979797" stroke-linecap="square"></path>
+                <path d="M34,16.5 L34,52.5" id="Line-10-Copy" stroke="#979797" stroke-linecap="square"></path>
+                <rect id="Rectangle" fill="#F8F8F8" x="0" y="4" width="48" height="5" rx="1"></rect>
+                <path d="M18.5,4 L18.5,1 L18.5,4 Z M18.5,1 L29.5,1 L18.5,1 Z M29.5,4 L29.5,1 L29.5,4 Z" id="Combined-Shape" stroke="#979797" stroke-width="2" stroke-linecap="square"></path>
+                <path d="M4.5,9.5 L43.5,9.5" id="Line-14" stroke="#979797" stroke-linecap="square"></path>
+            </g>
+        </g>
+    </g>
+</svg>
