@@ -9,7 +9,8 @@ const app = express();
 // body-parser middleware
 app.use(bodyParser.json());
 
-const db = require("./config/keys").localMongoURI;
+// const db = require("./config/keys").localMongoURI;
+const db = require("./config/keys").mLabURI;
 
 mongoose
   .connect(
