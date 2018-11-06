@@ -34,6 +34,7 @@ class RollExposures extends Component {
                 <div className="exposure-lens">{exposure.lens}</div>
               </div>
               <div className="exposure-description">{exposure.description}</div>
+              <hr />
             </div>
           ))}
         </div>

@@ -7,13 +7,22 @@
     display: flex;
     flex-flow: column;
     align-items: center;
-    justify-content: space-between;
     background: $nav-link-grey;
 
     .navbar-link {
       img {
         width: 40px;
         margin: 10px 0;
+      }
+    }
+
+    .add-roll-btn {
+      width: 45px;
+      margin: 10px 0;
+
+      &:hover,
+      &:focus {
+        cursor: pointer;
       }
     }
   }

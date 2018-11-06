@@ -1,0 +1,21 @@
+.quick-start-container {
+  height: 100%;
+
+  .quick-start {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+
+    .arrow {
+      width: 5px;
+      height: 85%;
+      background: $white;
+    }
+
+    .text {
+      color: $white;
+      font-size: 2rem;
+    }
+  }
+}

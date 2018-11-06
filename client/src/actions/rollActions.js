@@ -3,7 +3,9 @@ import {
   ADD_ROLL,
   DELETE_ROLL,
   ROLLS_LOADING,
-  SET_CURRENT_ROLL
+  SET_CURRENT_ROLL,
+  TOGGLE_MODAL,
+  MODAL_MODE
 } from "../types";
 import axios from "axios";
 
@@ -51,5 +53,18 @@ export const deleteRoll = id => dispatch => {
 export const setRollsLoading = () => {
   return {
     type: ROLLS_LOADING
+  };
+};
+
+export const toggleModal = () => {
+  return {
+    type: TOGGLE_MODAL
+  };
+};
+
+export const setModalMode = mode => {
+  return {
+    type: MODAL_MODE,
+    payload: mode
   };
 };

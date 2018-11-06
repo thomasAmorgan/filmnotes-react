@@ -3,6 +3,8 @@
     grid-template-areas: "nav";
     grid-template-columns: 1fr;
     grid-template-rows: 40px auto;
+    box-shadow: 0 5px 10px 5px #00000075;
+    position: relative;
 
     .navlinks {
       flex-flow: row;
@@ -23,6 +25,25 @@
     }
   }
 
+  .quick-start-container {
+    .quick-start {
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: flex-start;
+
+      .arrow {
+        width: 85%;
+        height: 5px;
+        background: $white;
+        margin: 50px 0;
+      }
+      .text {
+        text-align: center;
+        font-size: 1.5rem;
+      }
+    }
+  }
+
   .roll-list-view {
     flex-flow: row;
     height: 100%;
@@ -38,8 +59,9 @@
 
   .roll-view {
     display: block;
-    overflow-y: inherit;
+    overflow-y: scroll;
     overflow-x: hidden;
+    padding: 20px 0 0;
 
     .roll-stats {
       display: flex;
@@ -51,6 +73,22 @@
     .roll-exposures-list {
       display: flex;
       flex-flow: column wrap;
+
+      .roll-exposures-item {
+        background: none;
+        color: $white;
+        box-shadow: none;
+        padding: 5px 10px;
+        margin: 5px 10px;
+
+        .exposure-stats {
+          margin: 5px 0;
+        }
+
+        hr {
+          margin: 5px 0;
+        }
+      }
     }
   }
 }
