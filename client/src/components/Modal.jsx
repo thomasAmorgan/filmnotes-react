@@ -38,7 +38,7 @@ class Modal extends Component {
 
     return (
       <div className="modal">
-        <h1>BLAH</h1>
+        <h1>Add Roll</h1>
       </div>
     );
   }
