@@ -99,12 +99,16 @@
 
   .roll-form {
     form {
-      input {
-        margin: 3px 0;
-        padding: 8px 5px;
+      .roll-form-stats {
+        input {
+          margin: 3px 0;
+          padding: 8px 5px;
+        }
       }
-      textarea {
-        margin: 3px 0;
+      .roll-form-description {
+        textarea {
+          margin: 3px 0;
+        }
       }
     }
   }
