@@ -10,6 +10,8 @@
   }
 
   form {
+    -webkit-appearance: none;
+    border-radius: 0;
     padding: 2%;
     display: grid;
     grid-template-areas: "stats description" "stats description" "buttons buttons";
@@ -22,6 +24,8 @@
       padding: 0 15px 0 0;
 
       input {
+        -webkit-appearance: none;
+        border-radius: 0;
         margin: 10px 0;
         border: none;
         padding: 10px 5px;
@@ -33,6 +37,8 @@
       grid-area: description;
 
       textarea {
+        -webkit-appearance: none;
+        border-radius: 0;
         margin: 10px 0;
         border: none;
         padding: 10px 5px;
@@ -49,6 +55,8 @@
       display: flex;
       justify-content: space-around;
       button {
+        -webkit-appearance: none;
+        border-radius: 0;
         padding: 15px 10%;
         font-size: 1.2rem;
         font-family: $futura;

@@ -96,4 +96,16 @@
       }
     }
   }
+
+  .roll-form {
+    form {
+      input {
+        margin: 3px 0;
+        padding: 8px 5px;
+      }
+      textarea {
+        margin: 3px 0;
+      }
+    }
+  }
 }
