@@ -1,0 +1,76 @@
+.roll-form {
+  height: 100%;
+  width: 100%;
+  color: $white;
+
+  .roll-form-title {
+    font-size: 2.5rem;
+    font-family: $futura;
+    padding: 2%;
+  }
+
+  form {
+    padding: 2%;
+    display: grid;
+    grid-template-areas: "stats description" "stats description" "buttons buttons";
+    grid-template-columns: 50% 50%;
+
+    .roll-form-stats {
+      grid-area: stats;
+      display: flex;
+      flex-flow: column;
+      padding: 0 15px 0 0;
+
+      input {
+        margin: 10px 0;
+        border: none;
+        padding: 10px 5px;
+        font-size: 1rem;
+      }
+    }
+
+    .roll-form-description {
+      grid-area: description;
+
+      textarea {
+        margin: 10px 0;
+        border: none;
+        padding: 10px 5px;
+        font-size: 1rem;
+        height: 90%;
+        width: 90%;
+        resize: none;
+      }
+    }
+
+    .roll-form-buttons {
+      grid-area: buttons;
+      margin: 15px 0 0;
+      display: flex;
+      justify-content: space-around;
+      button {
+        padding: 15px 10%;
+        font-size: 1.2rem;
+        font-family: $futura;
+        border: none;
+      }
+      .red {
+        background: $red;
+
+        &:hover,
+        &:focus {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+      .green {
+        background: $green;
+        &:hover,
+        &:focus {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

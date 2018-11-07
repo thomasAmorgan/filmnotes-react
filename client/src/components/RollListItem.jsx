@@ -1,10 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { setCurrentRoll } from "../actions/rollActions";
+import {
+  setCurrentRoll,
+  toggleModal,
+  setModalMode
+} from "../actions/rollActions";
 import addShotBtn from "../assests/icons/pngs/add_shot.png";
 
 class RollListItem extends Component {
+  handleModal = () => {
+    this.setRoll();
+    this.props.toggleModal();
+    this.props.setModalMode({
+      mode: "exposure",
+      editing: false
+    });
+  };
+
   setRoll = () => {
     this.props.setCurrentRoll(this.props.roll._id);
   };
@@ -38,7 +51,7 @@ class RollListItem extends Component {
         </div>
 
         <div className="roll-add-btn">
-          <img src={addShotBtn} alt="add shot" />
+          <img src={addShotBtn} alt="add shot" onClick={this.handleModal} />
         </div>
       </div>
     );
@@ -47,15 +60,19 @@ class RollListItem extends Component {
 
 RollListItem.protoTypes = {
   setCurrentRoll: PropTypes.func.isRequired,
-  currentRoll: PropTypes.object
+  currentRoll: PropTypes.object,
+  toggleModal: PropTypes.func,
+  setModalMode: PropTypes.func
 };
 
 const mapStateToProps = state => ({
   setCurrentRoll: state.rollsCollection.setCurrentRoll,
-  currentRoll: state.rollsCollection.currentRoll
+  currentRoll: state.rollsCollection.currentRoll,
+  toggleModal: state.rollsCollection.toggleModal,
+  setModalMode: state.rollsCollection.setModalMode
 });
 
 export default connect(
   mapStateToProps,
-  { setCurrentRoll }
+  { setCurrentRoll, toggleModal, setModalMode }
 )(RollListItem);

@@ -5,7 +5,8 @@ import {
   ROLLS_LOADING,
   SET_CURRENT_ROLL,
   TOGGLE_MODAL,
-  MODAL_MODE
+  MODAL_MODE,
+  ADD_EXPOSURE
 } from "../types";
 import axios from "axios";
 
@@ -36,6 +37,15 @@ export const addRoll = roll => dispatch => {
   axios.post("/api/rolls", roll).then(res =>
     dispatch({
       type: ADD_ROLL,
+      payload: res.data
+    })
+  );
+};
+
+export const addExposure = (id, exposure) => dispatch => {
+  rolls.put(`${id}`, exposure).then(res =>
+    dispatch({
+      type: ADD_EXPOSURE,
       payload: res.data
     })
   );

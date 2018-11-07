@@ -4,6 +4,7 @@
 @import "./components/rollexposures.scss";
 @import "./components/quickstart.scss";
 @import "./components/modal.scss";
+@import "./components/rollform.scss";
 
 .App {
   height: 100%;
@@ -15,6 +16,7 @@
     padding: 5% 5% 0;
     background: $content-background;
     position: relative;
+    overflow-y: scroll;
   }
 }
 

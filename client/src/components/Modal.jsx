@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import RollForm from "./RollForm";
+import ExposureForm from "./ExposureForm";
 
 class Modal extends Component {
   state = {
@@ -11,11 +13,14 @@ class Modal extends Component {
     switch (this.props.modalMode.mode) {
       case "roll":
         this.setState({
-          modalForm: "roll form"
+          modalForm: <RollForm />
         });
         break;
 
       case "exposure":
+        this.setState({
+          modalForm: <ExposureForm />
+        });
         break;
 
       default:
@@ -36,11 +41,7 @@ class Modal extends Component {
   render() {
     console.log(this.props.modalMode);
 
-    return (
-      <div className="modal">
-        <h1>Add Roll</h1>
-      </div>
-    );
+    return <div className="modal">{this.state.modalForm}</div>;
   }
 }
 

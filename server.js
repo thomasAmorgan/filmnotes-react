@@ -9,13 +9,13 @@ const app = express();
 // body-parser middleware
 app.use(bodyParser.json());
 
-// const db = require("./config/keys").localMongoURI;
-const db = require("./config/keys").mLabURI;
+const db = require("./config/keys").localMongoURI;
+// const db = require("./config/keys").mLabURI;
 
 mongoose
   .connect(
     db,
-    { useNewUrlParser: true }
+    { useNewUrlParser: true, useFindAndModify: false }
   )
   .then(() => console.log("mongoDB connected..."))
   .catch(err => console.log(err));

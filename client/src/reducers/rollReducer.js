@@ -1,6 +1,7 @@
 import {
   GET_ROLLS,
   ADD_ROLL,
+  ADD_EXPOSURE,
   DELETE_ROLL,
   ROLLS_LOADING,
   SET_CURRENT_ROLL,
@@ -38,6 +39,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         rolls: [action.payload, ...state.rolls]
+      };
+    case ADD_EXPOSURE:
+      return {
+        ...state,
+        rolls: [...state.rolls]
       };
     case DELETE_ROLL:
       return {

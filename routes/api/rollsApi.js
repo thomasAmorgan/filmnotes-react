@@ -27,17 +27,39 @@ router.post("/", (req, res) => {
     title: req.body.title,
     stock: req.body.stock,
     iso: req.body.iso,
-    pushedOrPulled: req.body.pushedOrPulled,
     camera: req.body.camera,
     format: req.body.format,
     tags: req.body.tags,
-    notes: req.body.notes,
-    exposures: req.body.exposures
+    notes: req.body.notes
   });
 
   newRoll.save().then(roll => {
     res.json(roll);
   });
+});
+
+router.put("/:id", (req, res) => {
+  const newExposure = {
+    aperture: req.body.aperture,
+    date: req.body.date,
+    description: req.body.description,
+    lens: req.body.lens,
+    shutter: req.body.shutter,
+    title: req.body.title
+  };
+
+  Roll.findOneAndUpdate(
+    { _id: req.params.id },
+    { $push: { exposures: newExposure } },
+    { new: false, upsert: false },
+    (err, result) => {
+      if (err) {
+        res.status(500).json(err);
+      } else {
+        res.status(201).json({ sucess: true });
+      }
+    }
+  );
 });
 
 // @route DELETE api/rolls/:id
