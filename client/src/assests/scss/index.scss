@@ -5,15 +5,45 @@
 
 html {
   height: 100%;
-  background: $content-background;
+  background: $mac-dark-grey;
   overflow: hidden;
 }
 body {
   height: 100%;
   margin: 0;
-  font-family: $avenir-light;
-  background: $content-background;
+  font-family: $avenir-book;
+  background: $mac-dark-grey;
 }
 #root {
   height: 100%;
+}
+.blue {
+  background: $blue;
+}
+.green {
+  background: $green;
+}
+.yellow {
+  background: $yellow;
+}
+.orange {
+  background: $orange;
+}
+.red {
+  background: $red;
+}
+.blue-border {
+  border: 7px double $blue;
+}
+.green-border {
+  border: 7px double $green;
+}
+.yellow-border {
+  border: 7px double $yellow;
+}
+.orange-border {
+  border: 7px double $orange;
+}
+.red-border {
+  border: 7px double $red;
 }

@@ -26,6 +26,7 @@
     }
     .sidebar-content {
       overflow-x: scroll;
+      -webkit-overflow-scrolling: touch;
       overflow-y: hidden;
     }
   }
@@ -39,7 +40,7 @@
       .arrow {
         width: 85%;
         height: 5px;
-        background: $white;
+        background: $text-white;
         margin: 50px 0;
       }
       .text {
@@ -65,6 +66,7 @@
   .roll-view {
     display: block;
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
     overflow-x: hidden;
     padding: 20px 0 0;
 
@@ -81,7 +83,7 @@
 
       .roll-exposures-item {
         background: none;
-        color: $white;
+        color: $text-white;
         box-shadow: none;
         padding: 5px 10px;
         margin: 5px 10px;

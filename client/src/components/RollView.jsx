@@ -18,6 +18,8 @@ class RollView extends Component {
     } = this.props.currentRoll;
     console.log(this.props.currentRoll);
 
+    let colors = ["blue", "green", "yellow", "orange", "red"];
+
     return (
       <div className="roll-view">
         <div className="roll-header">
@@ -38,7 +40,10 @@ class RollView extends Component {
           <div className="roll-tags-header">{"Tags: "}</div>
           <div className="roll-tags-list">
             {tags.map((tag, index) => (
-              <div className="roll-tags-item" key={index}>
+              <div
+                className={"roll-tags-item " + colors[index % colors.length]}
+                key={index}
+              >
                 {tag}
               </div>
             ))}

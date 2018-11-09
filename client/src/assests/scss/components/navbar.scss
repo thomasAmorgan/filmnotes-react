@@ -7,7 +7,7 @@
     display: flex;
     flex-flow: column;
     align-items: center;
-    background: $nav-link-grey;
+    background: $mac-dark-grey;
 
     .navbar-link {
       img {
@@ -28,7 +28,7 @@
   }
 
   .sidebar-content {
-    background: $sidebar-grey;
+    background: $mac-mid-dark-grey;
     overflow-y: scroll;
   }
 }

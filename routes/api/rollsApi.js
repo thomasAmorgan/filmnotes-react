@@ -38,6 +38,9 @@ router.post("/", (req, res) => {
   });
 });
 
+// @route PUT api/rolls/:id
+// @desc adds a new exposure to the current roll
+// @access public
 router.put("/:id", (req, res) => {
   const newExposure = {
     aperture: req.body.aperture,

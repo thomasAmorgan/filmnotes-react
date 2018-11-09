@@ -6,6 +6,7 @@ import addShotBtn from "../assests/icons/pngs/add_shot.png";
 class RollExposures extends Component {
   render() {
     let { exposures } = this.props.currentRoll;
+    let colors = ["blue", "green", "yellow", "orange", "red"];
 
     return (
       <div className="roll-exposures">
@@ -17,7 +18,14 @@ class RollExposures extends Component {
         </div>
         <div className="roll-exposures-list">
           {exposures.map((exposure, index) => (
-            <div className="roll-exposures-item" key={exposure._id}>
+            <div
+              className={
+                "roll-exposures-item " +
+                colors[index % colors.length] +
+                "-border"
+              }
+              key={exposure._id}
+            >
               <div className="exposure-header">
                 <div className="exposure-title">
                   {index + 1 + ": " + exposure.title}
@@ -34,7 +42,7 @@ class RollExposures extends Component {
                 <div className="exposure-lens">{exposure.lens}</div>
               </div>
               <div className="exposure-description">{exposure.description}</div>
-              <hr />
+              {/* <hr /> */}
             </div>
           ))}
         </div>

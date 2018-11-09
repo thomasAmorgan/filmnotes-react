@@ -19,12 +19,14 @@
   .roll-exposures-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    padding-bottom: 45px;
 
     .roll-exposures-item {
-      background: $white;
-      color: $black;
+      // background: $white;
+      color: $text-white;
       padding: 10px;
       margin: 10px;
+      // border: 1px solid;
       box-shadow: $shadow;
 
       .exposure-header {
@@ -37,6 +39,10 @@
         display: flex;
         justify-content: space-between;
         margin: 10px 0;
+      }
+
+      .exposure-description {
+        word-break: break-word;
       }
     }
   }

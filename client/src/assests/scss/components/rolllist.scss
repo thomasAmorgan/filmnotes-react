@@ -1,7 +1,7 @@
 .roll-list-view {
   display: flex;
   flex-flow: column;
-  color: $white;
+  color: $text-white;
 
   .roll-list-item {
     display: flex;
@@ -13,7 +13,7 @@
     &:hover,
     &:focus {
       cursor: pointer;
-      background: $dark-grey;
+      background: $mac-dark-highlight;
     }
 
     .roll-title-group {
@@ -29,6 +29,9 @@
       }
       .roll-item-date {
         font-weight: bold;
+      }
+      .roll-item-description {
+        word-break: break-word;
       }
     }
 
@@ -59,5 +62,5 @@
   }
 }
 .active-roll {
-  background: $dark-grey;
+  background: $mac-dark-highlight;
 }
