@@ -101,15 +101,14 @@
 
   .roll-form {
     form {
-      .roll-form-stats {
-        input {
-          margin: 3px 0;
-          padding: 8px 5px;
-        }
+      .text-input {
+        margin: 3px 0;
+        padding: 5px 1%;
       }
-      .roll-form-description {
+      .form-description {
         textarea {
           margin: 3px 0;
+          height: 150px;
         }
       }
     }

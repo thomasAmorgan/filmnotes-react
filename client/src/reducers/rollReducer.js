@@ -18,7 +18,25 @@ const initialState = {
   modalMode: {
     mode: "",
     editing: false
-  }
+  },
+  exposureForm: [
+    { key: "title", placeholder: "title...", props: { required: true } },
+    { key: "date", placeholder: "date..." },
+    { key: "aperture", placeholder: "aperture..." },
+    { key: "shutter", placeholder: "shutter..." },
+    { key: "lens", placeholder: "lens..." },
+    { key: "description", placeholder: "description...", type: "textarea" }
+  ],
+  rollForm: [
+    { key: "title", placeholder: "title...", props: { required: true } },
+    { key: "date", placeholder: "date..." },
+    { key: "stock", placeholder: "stock..." },
+    { key: "iso", placeholder: "iso..." },
+    { key: "camera", placeholder: "camera..." },
+    { key: "format", placeholder: "format..." },
+    { key: "tags", placeholder: "tags..." },
+    { key: "notes", placeholder: "description...", type: "textarea" }
+  ]
 };
 
 export default function(state = initialState, action) {
