@@ -3,8 +3,17 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import editRoll from "../assests/icons/pngs/edit.png";
 import RollExposures from "./RollExposures";
+import { toggleModal, setModalMode } from "../actions/rollActions";
 
 class RollView extends Component {
+  handleModal = () => {
+    this.props.setModalMode({
+      mode: "roll",
+      editing: true
+    });
+    this.props.toggleModal();
+  };
+
   render() {
     let {
       title,
@@ -26,7 +35,7 @@ class RollView extends Component {
           <div className="roll-title">{title}</div>
           <div className="roll-date">{new Date(date).toLocaleDateString()}</div>
           <div className="roll-edit-btn">
-            <img src={editRoll} alt="edit roll" />
+            <img src={editRoll} onClick={this.handleModal} alt="edit roll" />
           </div>
         </div>
         <hr />
@@ -69,4 +78,7 @@ const mapStateToProps = state => ({
   currentRoll: state.rollsCollection.currentRoll
 });
 
-export default connect(mapStateToProps)(RollView);
+export default connect(
+  mapStateToProps,
+  { toggleModal, setModalMode }
+)(RollView);

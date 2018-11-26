@@ -11,11 +11,11 @@ import PropTypes from "prop-types";
 
 class NavBar extends Component {
   handleModal = () => {
-    this.props.toggleModal();
     this.props.setModalMode({
       mode: "roll",
       editing: false
     });
+    this.props.toggleModal();
   };
 
   render() {

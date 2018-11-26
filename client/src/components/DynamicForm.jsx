@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import {
   addExposure,
   toggleModal,
+  setModalMode,
   setCurrentRoll,
   addRoll
 } from "../actions/rollActions";
@@ -20,6 +21,8 @@ class DynamicForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
+    // check if editing
+    // call func to update rather than add
     if (this.props.modalMode.mode === "roll") {
       let newRoll = {
         ...this.state,
@@ -40,16 +43,81 @@ class DynamicForm extends Component {
 
   handleDiscard = e => {
     e.preventDefault();
+    this.props.setModalMode({ mode: "", editing: false });
+    this.setState({});
     this.props.toggleModal();
   };
 
-  renderForm = () => {
-    let model = [];
+  // need to be changed to prefill the state instead of form, because data is uneditable in current form
+  preFillForm = (form, objectData) => {
+    // check for tags so it populates correctly, spaces vs commas
+    let newForm = form.map(x => ({ ...x }));
+
+    newForm.forEach(input => {
+      for (let stat in objectData) {
+        if (input.key === stat) {
+          input.value = objectData[stat];
+        }
+      }
+    });
+
+    return newForm;
+  };
+
+  preFillState = (form, objectData) => {
+    form.forEach(input => {
+      for (let stat in objectData) {
+        if (input.key === stat) {
+          this.setState({
+            [stat]: objectData[stat]
+          });
+        }
+      }
+    });
+  };
+
+  componentDidMount() {
+    let currentRoll = this.props.currentRoll;
+    let rollForm = this.props.rollForm;
+
+    // create current exposure state, create setCurrentExposure
+    let currentExposure = this.props.currentExposure;
+    let exposureForm = this.props.exposureForm;
 
     if (this.props.modalMode.mode === "roll") {
-      model = this.props.rollForm;
-    } else {
-      model = this.props.exposureForm;
+      if (this.props.modalMode.editing) {
+        this.preFillState(rollForm, currentRoll);
+      }
+    } else if (this.props.modalMode.mode === "exposure") {
+      if (this.props.modalMode.editing) {
+        this.preFillState(exposureForm, currentExposure);
+      }
+    }
+  }
+
+  renderForm = () => {
+    let model = [];
+    let currentRoll = this.props.currentRoll;
+    let rollForm = this.props.rollForm;
+
+    // create current exposure state, create setCurrentExposure
+    let currentExposure = this.props.currentExposure;
+    let exposureForm = this.props.exposureForm;
+
+    // check if editing
+    // call function to prefill form
+    if (this.props.modalMode.mode === "roll") {
+      if (this.props.modalMode.editing) {
+        model = this.preFillForm(rollForm, currentRoll);
+      } else {
+        model = rollForm;
+      }
+    } else if (this.props.modalMode.mode === "exposure") {
+      if (this.props.modalMode.editing) {
+        model = this.preFillForm(exposureForm, currentExposure);
+      } else {
+        model = exposureForm;
+      }
     }
 
     let formUI = model.map(input => {
@@ -57,6 +125,7 @@ class DynamicForm extends Component {
       let type = input.type || "text";
       let placeholder = input.placeholder || "";
       let props = input.props || {};
+      let value = input.value;
 
       let inputElement = (
         <input
@@ -65,6 +134,7 @@ class DynamicForm extends Component {
           type={type}
           placeholder={placeholder}
           {...props}
+          defaultValue={value}
           onChange={e => this.handleChange(e, key)}
         />
       );
@@ -76,6 +146,7 @@ class DynamicForm extends Component {
               className="textarea-input"
               placeholder={placeholder}
               {...props}
+              defaultValue={value}
               onChange={e => this.handleChange(e, key)}
             />
           </div>
@@ -116,6 +187,7 @@ class DynamicForm extends Component {
 
 DynamicForm.protoTypes = {
   modalMode: PropTypes.object,
+  setModalMode: PropTypes.func,
   addExposure: PropTypes.func,
   addRoll: PropTypes.func,
   toggleModal: PropTypes.func,
@@ -127,6 +199,7 @@ DynamicForm.protoTypes = {
 
 const mapStateToProps = state => ({
   modalMode: state.rollsCollection.modalMode,
+  setModalMode: state.rollsCollection.setModalMode,
   addExposure: state.rollsCollection.addExposure,
   addRoll: state.rollsCollection.addRoll,
   toggleModal: state.rollsCollection.toggleModal,
@@ -138,5 +211,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addExposure, toggleModal, setCurrentRoll, addRoll }
+  { addExposure, toggleModal, setCurrentRoll, addRoll, setModalMode }
 )(DynamicForm);

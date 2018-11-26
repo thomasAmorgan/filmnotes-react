@@ -2,8 +2,17 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import addShotBtn from "../assests/icons/pngs/add_shot.png";
+import { toggleModal, setModalMode } from "../actions/rollActions";
 
 class RollExposures extends Component {
+  handleModal = () => {
+    this.props.toggleModal();
+    this.props.setModalMode({
+      mode: "exposure",
+      editing: false
+    });
+  };
+
   render() {
     let { exposures } = this.props.currentRoll;
     let colors = ["blue", "green", "yellow", "orange", "red"];
@@ -13,7 +22,7 @@ class RollExposures extends Component {
         <div className="roll-exposures-header">
           <div>Exposures</div>
           <div className="roll-exposures-btn">
-            <img src={addShotBtn} alt="add shot" />
+            <img src={addShotBtn} alt="add shot" onClick={this.handleModal} />
           </div>
         </div>
         <div className="roll-exposures-list">
@@ -52,11 +61,18 @@ class RollExposures extends Component {
 }
 
 RollExposures.protoTypes = {
-  currentRoll: PropTypes.object.isRequired
+  currentRoll: PropTypes.object.isRequired,
+  toggleModal: PropTypes.func,
+  setModalMode: PropTypes.func
 };
 
 const mapStateToProps = state => ({
-  currentRoll: state.rollsCollection.currentRoll
+  currentRoll: state.rollsCollection.currentRoll,
+  toggleModal: state.rollsCollection.toggleModal,
+  setModalMode: state.rollsCollection.setModalMode
 });
 
-export default connect(mapStateToProps)(RollExposures);
+export default connect(
+  mapStateToProps,
+  { toggleModal, setModalMode }
+)(RollExposures);

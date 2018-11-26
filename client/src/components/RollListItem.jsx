@@ -11,11 +11,11 @@ import addShotBtn from "../assests/icons/pngs/add_shot.png";
 class RollListItem extends Component {
   handleModal = () => {
     this.setRoll();
-    this.props.toggleModal();
     this.props.setModalMode({
       mode: "exposure",
       editing: false
     });
+    this.props.toggleModal();
   };
 
   setRoll = () => {
