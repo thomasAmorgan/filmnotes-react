@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const Roll = require("../../models/Roll");
+const Exposure = require("../../models/Exposure");
 
 // @route GET api/rolls
 // @desc get all rolls
@@ -9,14 +10,14 @@ const Roll = require("../../models/Roll");
 router.get("/", (req, res) => {
   Roll.find()
     .sort({ date: -1 })
-    .then(rolls => res.json(rolls));
+    .then((rolls) => res.json(rolls));
 });
 
 // @route GET/api/rolls/:id
 // @desc gets currently selected roll
 // @access public
 router.get("/:id", (req, res) => {
-  Roll.findById(req.params.id).then(roll => res.json(roll));
+  Roll.findById(req.params.id).then((roll) => res.json(roll));
 });
 
 // @route POST api/rolls
@@ -33,7 +34,7 @@ router.post("/", (req, res) => {
     notes: req.body.notes
   });
 
-  newRoll.save().then(roll => {
+  newRoll.save().then((roll) => {
     res.json(roll);
   });
 });
@@ -42,14 +43,14 @@ router.post("/", (req, res) => {
 // @desc adds a new exposure to the current roll
 // @access public
 router.put("/:id", (req, res) => {
-  const newExposure = {
+  const newExposure = new Exposure({
     aperture: req.body.aperture,
     date: req.body.date,
     description: req.body.description,
     lens: req.body.lens,
     shutter: req.body.shutter,
     title: req.body.title
-  };
+  });
 
   Roll.findOneAndUpdate(
     { _id: req.params.id },
@@ -70,10 +71,10 @@ router.put("/:id", (req, res) => {
 // @access public
 router.delete("/:id", (req, res) => {
   Roll.findById(req.params.id)
-    .then(roll => {
+    .then((roll) => {
       roll.remove().then(() => res.json({ sucess: true }));
     })
-    .catch(err => res.status(404).json({ sucess: false }));
+    .catch((err) => res.status(404).json({ sucess: false }));
 });
 
 module.exports = router;

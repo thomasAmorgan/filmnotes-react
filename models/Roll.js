@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const Exposure = require("./Exposure");
 
 const RollSchema = new Schema({
   date: {
@@ -17,19 +18,7 @@ const RollSchema = new Schema({
   format: String,
   tags: [String],
   notes: String,
-  exposures: [
-    {
-      date: {
-        type: Date,
-        default: Date.now
-      },
-      title: String,
-      aperture: Number,
-      shutter: String,
-      lens: String,
-      description: String
-    }
-  ]
+  exposures: [Exposure],
 });
 
 module.exports = Roll = mongoose.model("roll", RollSchema);

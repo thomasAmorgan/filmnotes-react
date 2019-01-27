@@ -2,6 +2,7 @@
   display: grid;
   grid-template-areas: "links content";
   grid-template-columns: 55px 220px;
+  overflow-y: scroll;
 
   .navlinks {
     display: flex;
@@ -30,5 +31,6 @@
   .sidebar-content {
     background: $mac-mid-dark-grey;
     overflow-y: scroll;
+    overflow-x: hidden;
   }
 }

@@ -48,13 +48,12 @@ class DynamicForm extends Component {
     this.props.toggleModal();
   };
 
-  // need to be changed to prefill the state instead of form, because data is uneditable in current form
   preFillForm = (form, objectData) => {
-    // check for tags so it populates correctly, spaces vs commas
     let newForm = form.map(x => ({ ...x }));
 
     newForm.forEach(input => {
       for (let stat in objectData) {
+        // check for tags so it populates correctly, spaces vs commas
         if (input.key === stat) {
           input.value = objectData[stat];
         }
@@ -63,37 +62,6 @@ class DynamicForm extends Component {
 
     return newForm;
   };
-
-  preFillState = (form, objectData) => {
-    form.forEach(input => {
-      for (let stat in objectData) {
-        if (input.key === stat) {
-          this.setState({
-            [stat]: objectData[stat]
-          });
-        }
-      }
-    });
-  };
-
-  componentDidMount() {
-    let currentRoll = this.props.currentRoll;
-    let rollForm = this.props.rollForm;
-
-    // create current exposure state, create setCurrentExposure
-    let currentExposure = this.props.currentExposure;
-    let exposureForm = this.props.exposureForm;
-
-    if (this.props.modalMode.mode === "roll") {
-      if (this.props.modalMode.editing) {
-        this.preFillState(rollForm, currentRoll);
-      }
-    } else if (this.props.modalMode.mode === "exposure") {
-      if (this.props.modalMode.editing) {
-        this.preFillState(exposureForm, currentExposure);
-      }
-    }
-  }
 
   renderForm = () => {
     let model = [];
@@ -104,8 +72,6 @@ class DynamicForm extends Component {
     let currentExposure = this.props.currentExposure;
     let exposureForm = this.props.exposureForm;
 
-    // check if editing
-    // call function to prefill form
     if (this.props.modalMode.mode === "roll") {
       if (this.props.modalMode.editing) {
         model = this.preFillForm(rollForm, currentRoll);

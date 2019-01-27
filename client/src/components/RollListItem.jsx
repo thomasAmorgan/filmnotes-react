@@ -42,9 +42,15 @@ class RollListItem extends Component {
               {new Date(date).toLocaleDateString()}
             </div>
           </div>
-          <div className="roll-item-description">
-            {notes.substr(0, 40) + "..."}
-          </div>
+          {!!notes ?
+            <div className="roll-item-description">
+              {notes.substr(0, 40) + "..."}
+            </div> :
+            <div className="roll-item-description">
+              {""}
+            </div>
+          }
+
           <div className="roll-item-stock">{"Stock: " + stock}</div>
           <div className="roll-item-iso">{"ISO: " + iso}</div>
           <div className="roll-item-camera">{"Camera: " + camera}</div>
