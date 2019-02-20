@@ -6,7 +6,7 @@
   hr {
     width: 99%;
     border: 0.5px solid $mac-light-grey;
-    margin: 25px 0;
+    margin: 15px 0;
   }
 
   .roll-header {
@@ -18,31 +18,49 @@
 
     .roll-title {
       font-size: 2.2rem;
+      word-break: break-word;
     }
 
-    .roll-edit-btn {
-      height: 40px;
-      width: 40px;
+    .roll-actions {
+      display: flex;
+      flex-flow: row;
+      align-items: baseline;
+      justify-content: space-between;
+      margin: 0 0 0 10px;
 
-      &:hover,
-      &:focus {
-        cursor: pointer;
+      .roll-edit-btn {
+        height: 25px;
+        width: 25px;
+
+        &:hover,
+        &:focus {
+          cursor: pointer;
+        }
       }
+      .roll-trash-btn {
+        height: 25px;
+        width: 20px;
+        margin: 0 0 0 10px;
 
-      img {
-        height: 40px;
-        width: 40px;
-        display: flex;
-        align-self: baseline;
+        &:hover,
+        &:focus {
+          cursor: pointer;
+        }
       }
     }
+  }
+
+  .roll-date {
+    font-family: $futura-italic;
+    font-size: 1.3rem;
+    margin: 0 0 15px 0;
   }
 
   .roll-stats {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    margin: 0 0 25px 0;
+    margin: 0 0 15px 0;
     font-family: $futura-italic;
     font-size: 1.3rem;
   }

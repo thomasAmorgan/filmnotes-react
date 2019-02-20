@@ -1,0 +1,45 @@
+.delete-dialog {
+  padding: 2%;
+  text-align: center;
+
+  h2 {
+    color: $white;
+  }
+  
+  .text {
+    color: $white;
+  }
+
+  .confirm-buttons {
+    margin: 15px 0 0;
+    display: flex;
+    justify-content: space-around;
+
+    button {
+      -webkit-appearance: none;
+      border-radius: 0;
+      padding: 15px 10%;
+      font-size: 1.2rem;
+      font-family: $futura;
+      border: none;
+    }
+
+    .red {
+      background: $red;
+
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+    .green {
+      background: $green;
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+}

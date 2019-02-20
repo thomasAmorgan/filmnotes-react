@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import roll from "../assests/icons/pngs/roll.png";
 import addRoll from "../assests/icons/pngs/add_roll.png";
-import { Switch, Route } from "react-router";
+import { Route } from "react-router";
 import RollList from "./RollList";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -23,7 +23,7 @@ class NavBar extends Component {
       <div className="sidebar">
         <div className="navlinks">
           <NavLink
-            to="/"
+            to="/rolls"
             className="navbar-link"
             activeClassName="navbar-link-active"
           >
@@ -37,9 +37,7 @@ class NavBar extends Component {
           />
         </div>
         <div className="sidebar-content">
-          <Switch>
-            <Route exact path="/" component={RollList} />
-          </Switch>
+          <Route path="/rolls" component={RollList} />
         </div>
       </div>
     );

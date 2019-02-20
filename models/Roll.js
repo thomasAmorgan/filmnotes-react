@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 const Exposure = require("./Exposure");
 
 const RollSchema = new Schema({
+  // owner_id: String,
   date: {
     type: Date,
     default: Date.now

@@ -33,6 +33,35 @@
       margin: 10px;
       // border: 1px solid;
       box-shadow: $shadow;
+      height: fit-content;
+
+      .exposure-actions {
+        display: flex;
+        flex-flow: row;
+        align-items: baseline;
+        justify-content: space-between;
+        width: 45px;
+        margin: 0 0 8px auto;
+
+        .edit-btn {
+          height: 20px;
+          width: 20px;
+
+          &:hover,
+          &:focus {
+            cursor: pointer;
+          }
+        }
+        .trash-btn {
+          height: 20px;
+          width: 15px;
+
+          &:hover,
+          &:focus {
+            cursor: pointer;
+          }
+        }
+      }
 
       .exposure-header {
         display: flex;
@@ -43,7 +72,7 @@
       .exposure-stats {
         display: flex;
         justify-content: space-between;
-        margin: 10px 0;
+        margin: 5px 0;
       }
 
       .exposure-description {

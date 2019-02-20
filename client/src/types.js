@@ -1,9 +1,19 @@
 export const GET_ROLLS = "GET_ROLLS";
+export const GET_ROLL = "GET_ROLL";
 export const ADD_ROLL = "ADD_ROLL";
-export const ADD_EXPOSURE = "ADD_EXPOSURE";
+export const UPDATE_ROLL = "UPDATE_ROLL";
 export const DELETE_ROLL = "DELETE_ROLL";
-export const ROLLS_LOADING = "ROLLS_LOADING";
-export const GET_CURRENT_ROLL = "GET_CURRENT_ROLL";
 export const SET_CURRENT_ROLL = "SET_CURRENT_ROLL";
+
+export const ADD_EXPOSURE = "ADD_EXPOSURE";
+export const UPDATE_EXPOSURE = "UPDATE_EXPOSURE";
+export const DELETE_EXPOSURE = "DELETE_EXPOSURE";
+export const SET_CURRENT_EXPOSURE = "SET_CURRENT_EXPOSURE";
+
+export const ROLLS_LOADING = "ROLLS_LOADING";
+export const ROLL_LOADING = "ROLL_LOADING";
+export const EXPOSURE_LOADING = "EXPOSURE_LOADING";
+export const MODAL_LOADING = "MOADL_LOADING";
+
 export const TOGGLE_MODAL = "TOGGLE_MODAL";
 export const MODAL_MODE = "MODAL_MODE";

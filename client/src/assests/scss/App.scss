@@ -5,6 +5,7 @@
 @import "./components/quickstart.scss";
 @import "./components/modal.scss";
 @import "./components/dynamicform.scss";
+@import "./components/deletedialog.scss";
 
 .App {
   height: 100%;
@@ -27,7 +28,7 @@
     grid-template-areas: "content";
 
     .page-content {
-      overflow-y: hidden;
+      overflow-x: hidden;
       padding: 0 5%;
     }
   }

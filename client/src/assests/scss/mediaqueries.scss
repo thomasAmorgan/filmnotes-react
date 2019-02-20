@@ -57,6 +57,12 @@
     .roll-list-item {
       min-width: 175px;
 
+      .roll-item-title {
+        font-size: 1rem;
+        font-family: $futura-italic;
+        word-break: break-word; 
+      }
+
       .roll-item-description {
         display: none;
       }
@@ -86,7 +92,7 @@
         color: $text-white;
         box-shadow: none;
         padding: 5px 10px;
-        margin: 5px 10px;
+        margin: 5px 0;
 
         .exposure-stats {
           margin: 5px 0;

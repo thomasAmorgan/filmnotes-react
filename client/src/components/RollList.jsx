@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { getRolls } from "../actions/rollActions";
 import RollListItem from "./RollListItem";
 import { withRouter } from "react-router-dom";
+import LoadingDisplay from "./LoadingDisplay";
 
 class RollList extends Component {
   componentDidMount() {
@@ -15,9 +16,14 @@ class RollList extends Component {
 
     return (
       <div className="roll-list-view">
-        {rolls.map(roll => (
-          <RollListItem key={roll._id} roll={roll} />
-        ))}
+        {
+          this.props.rollsLoading ?
+            <LoadingDisplay />
+            :
+            rolls.map(roll => (
+              <RollListItem key={roll._id} roll={roll} />
+            ))
+        }
       </div>
     );
   }
@@ -25,12 +31,14 @@ class RollList extends Component {
 
 RollList.protoTypes = {
   rolls: PropTypes.array.isRequired,
-  getRolls: PropTypes.func.isRequired
+  getRolls: PropTypes.func.isRequired,
+  rollsLoading: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
   rolls: state.rollsCollection.rolls,
-  getRolls: state.rollsCollection.getRolls
+  getRolls: state.rollsCollection.getRolls,
+  rollsLoading: state.rollsCollection.rollsLoading
 });
 
 export default withRouter(

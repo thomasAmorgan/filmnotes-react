@@ -16,25 +16,21 @@
       background: $mac-dark-highlight;
     }
 
-    .roll-title-group {
-      display: flex;
-      flex-flow: row;
-      justify-content: space-between;
-      align-items: baseline;
-      margin: 0 0 5px 0;
-
-      .roll-item-title {
-        font-size: 1.3rem;
-        font-family: $futura-italic;
-      }
-      .roll-item-date {
-        font-weight: bold;
-      }
-      .roll-item-description {
-        word-break: break-word;
-      }
+    a {
+      text-decoration: none;
+      color: $text-white;
     }
 
+    .roll-item-title {
+      font-size: 1.3rem;
+      font-family: $futura-italic;
+    }
+
+    .roll-item-description {
+      word-break: break-word;
+    }
+
+    .roll-item-date,
     .roll-item-stock,
     .roll-item-iso,
     .roll-item-camera {

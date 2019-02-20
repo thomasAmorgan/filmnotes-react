@@ -5,8 +5,9 @@ import {
   addExposure,
   toggleModal,
   setModalMode,
-  setCurrentRoll,
-  addRoll
+  addRoll,
+  updateRoll,
+  updateExposure
 } from "../actions/rollActions";
 
 class DynamicForm extends Component {
@@ -21,20 +22,34 @@ class DynamicForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    // check if editing
-    // call func to update rather than add
     if (this.props.modalMode.mode === "roll") {
+      let convertedTags;
+      if (typeof (this.state.tags) === 'string') {
+        convertedTags = this.state.tags.split(" ");
+      } else {
+        convertedTags = this.state.tags;
+      }
+
       let newRoll = {
         ...this.state,
-        tags: this.state.tags.split(" ")
+        tags: convertedTags
       };
-      this.props.addRoll(newRoll);
+
+      if (this.props.modalMode.editing) {
+        this.props.updateRoll(this.props.currentRoll._id, newRoll);
+      } else {
+        this.props.addRoll(newRoll);
+      }
     } else {
       let newExposure = {
         ...this.state
       };
-      this.props.addExposure(this.props.currentRoll._id, newExposure);
-      this.props.setCurrentRoll(this.props.currentRoll._id);
+
+      if (this.props.modalMode.editing) {
+        this.props.updateExposure(this.props.currentRoll._id, this.props.currentExposure._id, newExposure);
+      } else {
+        this.props.addExposure(this.props.currentRoll._id, newExposure);
+      }
     }
 
     this.setState({});
@@ -63,12 +78,43 @@ class DynamicForm extends Component {
     return newForm;
   };
 
+  preFillState = (form, objectData) => {
+    form.forEach(input => {
+      for (let stat in objectData) {
+        if (input.key === stat) {
+          this.setState({
+            [stat]: objectData[stat]
+          });
+        }
+      }
+    });
+  };
+
+  componentDidMount() {
+    if (this.props.modalMode.mode === 'roll' && this.props.modalMode.editing) {
+      this.preFillState(this.props.rollForm, this.props.currentRoll);
+    }
+    if (this.props.modalMode.mode === 'exposure' && this.props.modalMode.editing) {
+      this.preFillState(this.props.exposureForm, this.props.currentExposure);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.loading !== prevProps.loading) {
+      if (this.props.modalMode.mode === 'roll' && this.props.modalMode.editing) {
+        this.preFillState(this.props.rollForm, this.props.currentRoll);
+      }
+      if (this.props.modalMode.mode === 'exposure' && this.props.modalMode.editing) {
+        this.preFillState(this.props.exposureForm, this.props.currentExposure);
+      }
+    }
+  }
+
   renderForm = () => {
     let model = [];
     let currentRoll = this.props.currentRoll;
     let rollForm = this.props.rollForm;
 
-    // create current exposure state, create setCurrentExposure
     let currentExposure = this.props.currentExposure;
     let exposureForm = this.props.exposureForm;
 
@@ -134,7 +180,9 @@ class DynamicForm extends Component {
 
     return (
       <div className="roll-form">
-        <div className="roll-form-title">{`New ${formTitle}`}</div>
+        <div className="roll-form-title">
+          {this.props.modalMode.editing ? `Edit ${formTitle}` : `New ${formTitle}`}
+        </div>
         <form id="roll-form" onSubmit={this.handleSubmit}>
           {this.renderForm()}
           <div className="roll-form-buttons">
@@ -156,11 +204,13 @@ DynamicForm.protoTypes = {
   setModalMode: PropTypes.func,
   addExposure: PropTypes.func,
   addRoll: PropTypes.func,
+  updateRoll: PropTypes.func,
+  updateExposure: PropTypes.func,
   toggleModal: PropTypes.func,
   currentRoll: PropTypes.object,
-  setCurrentRoll: PropTypes.func,
   exposureForm: PropTypes.array.isRequired,
-  rollForm: PropTypes.array.isRequired
+  rollForm: PropTypes.array.isRequired,
+  currentExposure: PropTypes.object,
 };
 
 const mapStateToProps = state => ({
@@ -168,14 +218,16 @@ const mapStateToProps = state => ({
   setModalMode: state.rollsCollection.setModalMode,
   addExposure: state.rollsCollection.addExposure,
   addRoll: state.rollsCollection.addRoll,
+  updateRoll: state.rollsCollection.updateRoll,
+  updateExposure: state.rollsCollection.updateExposure,
   toggleModal: state.rollsCollection.toggleModal,
   currentRoll: state.rollsCollection.currentRoll,
-  setCurrentRoll: state.rollsCollection.setCurrentRoll,
   exposureForm: state.rollsCollection.exposureForm,
-  rollForm: state.rollsCollection.rollForm
+  rollForm: state.rollsCollection.rollForm,
+  currentExposure: state.rollsCollection.currentExposure,
 });
 
 export default connect(
   mapStateToProps,
-  { addExposure, toggleModal, setCurrentRoll, addRoll, setModalMode }
+  { addExposure, toggleModal, addRoll, setModalMode, updateRoll, updateExposure }
 )(DynamicForm);
