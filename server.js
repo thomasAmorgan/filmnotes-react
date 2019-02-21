@@ -15,10 +15,17 @@ const db = require("./config/keys").mLabURI;
 mongoose
   .connect(
     db,
-    { useNewUrlParser: true, useFindAndModify: false }
+    {
+      useNewUrlParser: true,
+      useFindAndModify: false,
+      autoReconnect: true,
+      reconnectTries: Number.MAX_VALUE,
+      reconnectInterval: 1000,
+      connectTimeoutMS: 30000
+    }
   )
   .then(() => console.log("mongoDB connected..."))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
 app.use("/api/rolls", rolls);
 
