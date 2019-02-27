@@ -7,6 +7,7 @@ import RollList from "./RollList";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { toggleModal, setModalMode } from "../actions/rollActions";
+import { userSignout } from '../actions/userActions';
 import PropTypes from "prop-types";
 
 class NavBar extends Component {
@@ -17,6 +18,10 @@ class NavBar extends Component {
     });
     this.props.toggleModal();
   };
+
+  handleSignout = () => {
+    this.props.userSignout();
+  }
 
   render() {
     return (
@@ -29,12 +34,15 @@ class NavBar extends Component {
           >
             <img src={roll} alt="display rolls" />
           </NavLink>
-          <img
-            src={addRoll}
-            alt="add roll"
-            className="add-roll-btn"
-            onClick={this.handleModal}
-          />
+          <Route path="/rolls" render={() =>
+            <img
+              src={addRoll}
+              alt="add roll"
+              className="add-roll-btn"
+              onClick={this.handleModal}
+            />
+          } />
+          <button onClick={this.handleSignout}>Sign Out</button>
         </div>
         <div className="sidebar-content">
           <Route path="/rolls" component={RollList} />
@@ -47,18 +55,20 @@ class NavBar extends Component {
 NavBar.protoTypes = {
   modalOpen: PropTypes.bool,
   toggleModal: PropTypes.func.isRequired,
-  setModalMode: PropTypes.func.isRequired
+  setModalMode: PropTypes.func.isRequired,
+  userSignout: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   modalOpen: state.rollsCollection.modalOpen,
   toggleModal: state.rollsCollection.toggleModal,
-  setModalMode: state.rollsCollection.setModalMode
+  setModalMode: state.rollsCollection.setModalMode,
+  userSignout: state.userAuth.userSignout
 });
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { toggleModal, setModalMode }
+    { toggleModal, setModalMode, userSignout }
   )(NavBar)
 );

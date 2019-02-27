@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import { toggleModal, setModalMode, deleteExposure, deleteRoll } from "../actions/rollActions";
 
 class DeleteDialog extends Component {
@@ -44,15 +44,12 @@ class DeleteDialog extends Component {
                 onClick={() => {
                   this.props.deleteRoll(this.props.currentRoll._id);
                   this.handleClose();
+                  this.props.history.replace({ pathname: '/rolls' });
                 }}
               >
-                <Redirect to="/rolls" />
                 Yes
-            </button>
-              <button className="red" onClick={this.handleClose}>
-                <Redirect to={`/rolls/${this.props.currentRoll._id}`} />
-                No
-            </button>
+              </button>
+              <button className="red" onClick={this.handleClose}>No</button>
             </div>
           </div>
         }
@@ -81,7 +78,7 @@ const mapStateToProps = state => ({
   currentRoll: state.rollsCollection.currentRoll,
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   { toggleModal, setModalMode, deleteExposure, deleteRoll }
-)(DeleteDialog);
+)(DeleteDialog));

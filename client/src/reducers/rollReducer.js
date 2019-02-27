@@ -14,7 +14,8 @@ import {
   MODAL_MODE,
   DELETE_EXPOSURE,
   SET_CURRENT_EXPOSURE,
-  UPDATE_EXPOSURE
+  UPDATE_EXPOSURE,
+  ROLLS_ERROR
 } from "../types";
 
 const initialState = {
@@ -27,8 +28,9 @@ const initialState = {
   currentRoll: {},
   currentExposure: {},
   modalOpen: false,
+  rollsErrorMessage: null,
   modalMode: {
-    mode: "",
+    mode: null,
     editing: false,
     deleting: false,
   },
@@ -58,13 +60,15 @@ export default function (state = initialState, action) {
       return {
         ...state,
         rollsLoading: false,
-        rolls: action.payload
+        rolls: action.payload,
+        rollsErrorMessage: null
       };
     case GET_ROLL:
       return {
         ...state,
         rollLoading: false,
-        roll: action.payload
+        roll: action.payload,
+        rollsErrorMessage: null
       };
     case SET_CURRENT_ROLL:
       return {
@@ -72,19 +76,22 @@ export default function (state = initialState, action) {
         rollLoading: false,
         modalLoading: false,
         rolls: [...state.rolls],
-        currentRoll: action.payload
+        currentRoll: action.payload,
+        rollsErrorMessage: null
       };
     case SET_CURRENT_EXPOSURE:
       return {
         ...state,
         modalLoading: false,
-        currentExposure: action.payload
+        currentExposure: action.payload,
+        rollsErrorMessage: null
       };
     case ADD_ROLL:
       return {
         ...state,
         rollsLoading: false,
-        rolls: [action.payload, ...state.rolls]
+        rolls: [action.payload, ...state.rolls],
+        rollsErrorMessage: null
       };
     case UPDATE_ROLL:
       let index = state.rolls.findIndex((roll) => {
@@ -98,32 +105,37 @@ export default function (state = initialState, action) {
         rollsLoading: false,
         rollLoading: false,
         rolls: rolls,
-        currentRoll: action.payload
+        currentRoll: action.payload,
+        rollsErrorMessage: null
       };
     case ADD_EXPOSURE:
       return {
         ...state,
         exposureLoading: false,
         rolls: [...state.rolls],
-        currentRoll: action.payload
+        currentRoll: action.payload,
+        rollsErrorMessage: null
       };
     case UPDATE_EXPOSURE:
       return {
         ...state,
         exposureLoading: false,
-        currentRoll: action.payload
+        currentRoll: action.payload,
+        rollsErrorMessage: null
       };
     case DELETE_ROLL:
       return {
         ...state,
         rollsLoading: false,
-        rolls: state.rolls.filter(roll => roll._id !== action.payload)
+        rolls: state.rolls.filter(roll => roll._id !== action.payload),
+        rollsErrorMessage: null
       };
     case DELETE_EXPOSURE:
       return {
         ...state,
         exposureLoading: false,
-        currentRoll: action.payload
+        currentRoll: action.payload,
+        rollsErrorMessage: null
       };
     case ROLLS_LOADING:
       return {
@@ -155,6 +167,12 @@ export default function (state = initialState, action) {
         ...state,
         modalMode: action.payload
       };
+    case ROLLS_ERROR: {
+      return {
+        ...state,
+        rollsErrorMessage: action.payload
+      }
+    }
     default:
       return state;
   }

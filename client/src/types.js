@@ -1,9 +1,11 @@
+// START ROLLS
 export const GET_ROLLS = "GET_ROLLS";
 export const GET_ROLL = "GET_ROLL";
 export const ADD_ROLL = "ADD_ROLL";
 export const UPDATE_ROLL = "UPDATE_ROLL";
 export const DELETE_ROLL = "DELETE_ROLL";
 export const SET_CURRENT_ROLL = "SET_CURRENT_ROLL";
+export const ROLLS_ERROR = "ROLLS_ERROR";
 
 export const ADD_EXPOSURE = "ADD_EXPOSURE";
 export const UPDATE_EXPOSURE = "UPDATE_EXPOSURE";
@@ -17,3 +19,12 @@ export const MODAL_LOADING = "MOADL_LOADING";
 
 export const TOGGLE_MODAL = "TOGGLE_MODAL";
 export const MODAL_MODE = "MODAL_MODE";
+// END ROLLS
+
+// START USERS
+export const REGISTER_USER = "REGISTER_USER";
+export const AUTHENTICATE_USER = "AUTHENTICATE_USER";
+export const USER_LOADING = "LOADING_USER";
+export const USER_ERROR = "USER_ERROR";
+export const USER_SIGNOUT = "USER_SIGNOUT";
+// END USERS

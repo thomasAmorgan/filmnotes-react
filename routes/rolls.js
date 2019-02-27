@@ -1,31 +1,39 @@
 const express = require("express");
+const jwt = require('jsonwebtoken');
 const router = express.Router();
 
-const Roll = require("../../models/Roll");
+const Roll = require("../models/Roll");
 
 // @route GET api/rolls
 // @desc get all rolls
-// @access public
-router.get("/", (req, res) => {
-  Roll.find()
+// @access private
+router.get("/", verifyToken, (req, res) => {
+  const userEmail = jwt.decode(req.token).email;
+
+  Roll.find({ user_id: userEmail })
     .sort({ date: -1 })
-    .then((rolls) => res.status(200).json(rolls));
+    .then((rolls) => res.status(200).json(rolls))
+    .catch((err) => res.status(404).json(err));
 });
 
 // @route GET/api/rolls/:id
 // @desc gets currently selected roll
-// @access public
-router.get("/:id", (req, res) => {
-  Roll.findById(req.params.id)
+// @access private
+router.get("/:id", verifyToken, (req, res) => {
+  const userEmail = jwt.decode(req.token).email;
+
+  Roll.findOne({ _id: req.params.id, user_id: userEmail })
     .then((roll) => res.status(200).json(roll))
     .catch((err) => res.status(404).json(err));
 });
 
 // @route GET/api/rolls/:rollId/exposure/:expId
 // @desc gets currently selected exposure
-// @access public
-router.get("/:rollId/exposure/:expId", (req, res) => {
-  Roll.findById(req.params.rollId)
+// @access private
+router.get("/:rollId/exposure/:expId", verifyToken, (req, res) => {
+  const userEmail = jwt.decode(req.token).email;
+
+  Roll.findOne({ _id: req.params.rollId, user_id: userEmail })
     .then((roll) => {
       let exposure = roll.exposures.filter(exposure => exposure._id == req.params.expId);
       res.status(200).json(exposure[0]);
@@ -35,8 +43,10 @@ router.get("/:rollId/exposure/:expId", (req, res) => {
 
 // @route POST api/rolls
 // @desc create a new roll
-// @access public
-router.post("/", (req, res) => {
+// @access private
+router.post("/", verifyToken, (req, res) => {
+  const userEmail = jwt.decode(req.token).email;
+
   const newRoll = new Roll({
     title: req.body.title,
     stock: req.body.stock,
@@ -44,7 +54,8 @@ router.post("/", (req, res) => {
     camera: req.body.camera,
     format: req.body.format,
     tags: req.body.tags,
-    notes: req.body.notes
+    notes: req.body.notes,
+    user_id: userEmail
   });
 
   newRoll.save()
@@ -54,10 +65,12 @@ router.post("/", (req, res) => {
 
 // @route PATCH api/rolls/:id
 // @desc updates roll data
-// @access public
-router.patch("/:id", (req, res) => {
+// @access private
+router.patch("/:id", verifyToken, (req, res) => {
+  const userEmail = jwt.decode(req.token).email;
+
   Roll.findOneAndUpdate(
-    { _id: req.params.id },
+    { _id: req.params.id, user_id: userEmail },
     {
       title: req.body.title,
       stock: req.body.stock,
@@ -72,7 +85,7 @@ router.patch("/:id", (req, res) => {
       if (err) {
         res.status(500).json(err);
       } else {
-        Roll.findById(req.params.id)
+        Roll.findOne({ _id: req.params.id, user_id: userEmail })
           .then((roll) => res.status(200).json(roll))
           .catch((err) => res.status(404).json(err));
       }
@@ -82,8 +95,10 @@ router.patch("/:id", (req, res) => {
 
 // @route PATCH api/rolls/:rollId/exposure/:expId
 // @desc updates existing exposure
-// @access public
-router.patch("/:rollId/exposure/:expId", (req, res) => {
+// @access private
+router.patch("/:rollId/exposure/:expId", verifyToken, (req, res) => {
+  const userEmail = jwt.decode(req.token).email;
+
   const updatedExposure = {
     aperture: req.body.aperture,
     date: req.body.date,
@@ -94,14 +109,14 @@ router.patch("/:rollId/exposure/:expId", (req, res) => {
   };
 
   Roll.findOneAndUpdate(
-    { _id: req.params.rollId, "exposures._id": req.params.expId },
+    { _id: req.params.rollId, user_id: userEmail, "exposures._id": req.params.expId },
     { $set: { "exposures.$": updatedExposure } },
     { new: false, upsert: false },
     (err, result) => {
       if (err) {
         res.status(500).json(err);
       } else {
-        Roll.findById(req.params.rollId)
+        Roll.findOne({ _id: req.params.rollId, user_id: userEmail })
           .then((roll) => res.status(200).json(roll))
           .catch((err) => res.status(404).json(err));
       }
@@ -111,8 +126,10 @@ router.patch("/:rollId/exposure/:expId", (req, res) => {
 
 // @route PUT api/rolls/:id
 // @desc adds a new exposure to the current roll
-// @access public
-router.put("/:id", (req, res) => {
+// @access private
+router.put("/:id", verifyToken, (req, res) => {
+  const userEmail = jwt.decode(req.token).email;
+
   const newExposure = {
     aperture: req.body.aperture,
     date: req.body.date,
@@ -123,14 +140,14 @@ router.put("/:id", (req, res) => {
   };
 
   Roll.findOneAndUpdate(
-    { _id: req.params.id },
+    { _id: req.params.id, user_id: userEmail },
     { $push: { exposures: newExposure } },
     { new: false, upsert: false },
     (err, result) => {
       if (err) {
         res.status(500).json(err);
       } else {
-        Roll.findById(req.params.id)
+        Roll.findOne({ _id: req.params.id, user_id: userEmail })
           .then((roll) => res.status(201).json(roll))
           .catch((err) => res.status(404).json(err));
       }
@@ -140,9 +157,11 @@ router.put("/:id", (req, res) => {
 
 // @route DELETE api/rolls/:id
 // @desc delete a roll
-// @access public
-router.delete("/:id", (req, res) => {
-  Roll.findById(req.params.id)
+// @access private
+router.delete("/:id", verifyToken, (req, res) => {
+  const userEmail = jwt.decode(req.token).email;
+
+  Roll.findOne({ _id: req.params.id, user_id: userEmail })
     .then((roll) => {
       roll.remove().then(() => res.status(200).json({ sucess: true }));
     })
@@ -151,21 +170,44 @@ router.delete("/:id", (req, res) => {
 
 // @route DELETE api/rolls/:rollId/exposure/:expId
 // @desc delete an exposure
-// @access public
-router.delete("/:rollId/exposure/:expId", (req, res) => {
+// @access private
+router.delete("/:rollId/exposure/:expId", verifyToken, (req, res) => {
+  const userEmail = jwt.decode(req.token).email;
+
   Roll.findOneAndUpdate(
-    { _id: req.params.rollId },
+    { _id: req.params.rollId, user_id: userEmail },
     { $pull: { exposures: { _id: req.params.expId } } },
     (err, result) => {
       if (err) {
         res.status(500).json(err);
       } else {
-        Roll.findById(req.params.rollId)
+        Roll.findOne({ _id: req.params.rollId, user_id: userEmail })
           .then((roll) => res.status(200).json(roll))
           .catch((err) => res.status(404).json(err));
       }
     }
   );
-})
+});
+
+// format of token
+// Authorization: Bearer <access_token>
+function verifyToken(req, res, next) {
+  // get auth header value
+  const bearerHeader = req.headers['authorization'];
+
+  if (typeof bearerHeader !== 'undefined') {
+    // split at the space
+    const bearer = bearerHeader.split(' ');
+    // get token
+    const bearerToken = bearer[1];
+    // set token
+    req.token = bearerToken;
+
+    next();
+  } else {
+    // Forbidden
+    res.sendStatus(403);
+  }
+}
 
 module.exports = router;

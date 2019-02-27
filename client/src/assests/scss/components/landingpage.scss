@@ -1,0 +1,49 @@
+.landing-page {
+  color: $text-white;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 2% 5%;
+
+  .heading {
+    text-align: center;
+
+    h1 {
+      margin: 10px 0;
+      font-size: 2.5rem;
+    }
+
+    .logo {
+      width: 200px;
+    }
+  }
+
+  .option-buttons {
+    display: flex;
+    justify-content: space-around;
+
+    .btn {
+      width: 100px;
+      text-align: center;
+      background: $mac-medium-grey;
+      color: $text-white;
+      padding: 15px 10px;
+      margin: 10px;
+      font-size: 1.2rem;
+      font-family: $futura;
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+        cursor: pointer;
+        background: $mac-light-grey;
+      }
+    }
+
+    .active {
+      background: $blue;
+      text-decoration: underline;
+    }
+  }
+}

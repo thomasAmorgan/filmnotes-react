@@ -14,19 +14,30 @@ import {
   ADD_EXPOSURE,
   DELETE_EXPOSURE,
   SET_CURRENT_EXPOSURE,
-  UPDATE_EXPOSURE
+  UPDATE_EXPOSURE,
+  ROLLS_ERROR
 } from "../types";
 import axios from "axios";
 
 const rolls = axios.create({
-  baseURL: "/api/rolls/"
+  baseURL: "/api/rolls/",
+  headers: { 'authorization': `Bearer ${localStorage.getItem('jwtToken')}` }
 });
+
+const setRollsHeader = () => {
+  rolls.defaults.headers['authorization'] = `Bearer ${localStorage.getItem('jwtToken')}`;
+}
 
 export const getRolls = () => (dispatch) => {
   dispatch(setRollsLoading());
-  rolls.get().then(res =>
-    dispatch(getRollsSuccess(res.data))
-  );
+  setRollsHeader();
+  rolls.get("")
+    .then(res => {
+      dispatch(getRollsSuccess(res.data))
+    })
+    .catch((err) => {
+      dispatch(setRollsError(err));
+    });
 };
 
 const getRollsSuccess = (rolls) => (dispatch) => {
@@ -38,9 +49,13 @@ const getRollsSuccess = (rolls) => (dispatch) => {
 
 export const getRoll = (id) => (dispatch) => {
   dispatch(setRollLoading());
-  rolls.get(`${id}`).then(res =>
-    dispatch(getRollSuccess(res.data))
-  );
+  rolls.get(`${id}`)
+    .then(res => {
+      dispatch(getRollSuccess(res.data))
+    })
+    .catch((err) => {
+      dispatch(setRollsError(err));
+    });
 };
 
 const getRollSuccess = (roll) => (dispatch) => {
@@ -53,9 +68,13 @@ const getRollSuccess = (roll) => (dispatch) => {
 export const setCurrentRoll = (id) => (dispatch) => {
   dispatch(setRollLoading());
   dispatch(setModalLoading());
-  rolls.get(`${id}`).then(res =>
-    dispatch(setCurrentRollSuccess(res.data))
-  );
+  rolls.get(`${id}`)
+    .then(res => {
+      dispatch(setCurrentRollSuccess(res.data))
+    })
+    .catch((err) => {
+      dispatch(setRollsError(err));
+    });
 };
 
 const setCurrentRollSuccess = (currentRoll) => (dispatch) => {
@@ -67,9 +86,13 @@ const setCurrentRollSuccess = (currentRoll) => (dispatch) => {
 
 export const setCurrentExposure = (rollId, expId) => (dispatch) => {
   dispatch(setModalLoading());
-  rolls.get(`${rollId}/exposure/${expId}`).then(res =>
-    dispatch(setCurrentExposureSuccess(res.data))
-  );
+  rolls.get(`${rollId}/exposure/${expId}`)
+    .then(res => {
+      dispatch(setCurrentExposureSuccess(res.data))
+    })
+    .catch((err) => {
+      dispatch(setRollsError(err));
+    });
 };
 
 const setCurrentExposureSuccess = (currentExposure) => (dispatch) => {
@@ -81,10 +104,14 @@ const setCurrentExposureSuccess = (currentExposure) => (dispatch) => {
 
 export const addRoll = (roll) => (dispatch) => {
   dispatch(setRollsLoading());
-  rolls.post("", roll).then(res =>
-    dispatch(addRollSuccess(res.data))
-  );
-};
+  rolls.post("", roll)
+    .then(res => {
+      dispatch(addRollSuccess(res.data))
+    })
+    .catch((err) => {
+      dispatch(setRollsError(err));
+    });
+}
 
 const addRollSuccess = (newRoll) => (dispatch) => {
   dispatch({
@@ -96,9 +123,13 @@ const addRollSuccess = (newRoll) => (dispatch) => {
 export const updateRoll = (id, roll) => (dispatch) => {
   dispatch(setRollsLoading());
   dispatch(setRollLoading());
-  rolls.patch(`${id}`, roll).then(res =>
-    dispatch(updateRollSuccess(res.data))
-  );
+  rolls.patch(`${id}`, roll)
+    .then(res => {
+      dispatch(updateRollSuccess(res.data))
+    })
+    .catch((err) => {
+      dispatch(setRollsError(err));
+    });
 }
 
 const updateRollSuccess = (updatedRoll) => (dispatch) => {
@@ -110,9 +141,13 @@ const updateRollSuccess = (updatedRoll) => (dispatch) => {
 
 export const addExposure = (id, exposure) => (dispatch) => {
   dispatch(setExposureLoading());
-  rolls.put(`${id}`, exposure).then(res =>
-    dispatch(addExposureSuccess(res.data))
-  );
+  rolls.put(`${id}`, exposure)
+    .then(res => {
+      dispatch(addExposureSuccess(res.data))
+    })
+    .catch((err) => {
+      dispatch(setRollsError(err));
+    });
 };
 
 const addExposureSuccess = (newExposure) => (dispatch) => {
@@ -124,9 +159,13 @@ const addExposureSuccess = (newExposure) => (dispatch) => {
 
 export const updateExposure = (rollId, expId, exposure) => (dispatch) => {
   dispatch(setExposureLoading());
-  rolls.patch(`${rollId}/exposure/${expId}`, exposure).then(res => {
-    dispatch(updateExposureSuccess(res.data))
-  });
+  rolls.patch(`${rollId}/exposure/${expId}`, exposure)
+    .then(res => {
+      dispatch(updateExposureSuccess(res.data))
+    })
+    .catch((err) => {
+      dispatch(setRollsError(err));
+    });
 }
 
 const updateExposureSuccess = (updatedRoll) => (dispatch) => {
@@ -138,9 +177,13 @@ const updateExposureSuccess = (updatedRoll) => (dispatch) => {
 
 export const deleteRoll = (id) => (dispatch) => {
   dispatch(setRollsLoading());
-  rolls.delete(`${id}`).then(res =>
-    dispatch(deleteRollSuccess(id))
-  );
+  rolls.delete(`${id}`)
+    .then(res => {
+      dispatch(deleteRollSuccess(id))
+    })
+    .catch((err) => {
+      dispatch(setRollsError(err));
+    });
 };
 
 const deleteRollSuccess = (rollId) => dispatch => {
@@ -152,9 +195,13 @@ const deleteRollSuccess = (rollId) => dispatch => {
 
 export const deleteExposure = (rollId, expId) => (dispatch) => {
   dispatch(setExposureLoading());
-  rolls.delete(`${rollId}/exposure/${expId}`).then(res =>
-    dispatch(deleteExposureSuccess(res.data))
-  );
+  rolls.delete(`${rollId}/exposure/${expId}`)
+    .then(res => {
+      dispatch(deleteExposureSuccess(res.data))
+    })
+    .catch((err) => {
+      dispatch(setRollsError(err));
+    });
 };
 
 const deleteExposureSuccess = (currentRoll) => (dispatch) => {
@@ -200,3 +247,10 @@ export const setModalMode = (mode) => {
     payload: mode
   };
 };
+
+const setRollsError = (err) => {
+  return {
+    type: ROLLS_ERROR,
+    payload: err
+  }
+} 

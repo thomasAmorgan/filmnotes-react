@@ -15,9 +15,13 @@
   "author": "Thomas A Morgan",
   "license": "MIT",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "concurrently": "^4.0.1",
     "express": "^4.16.4",
+    "express-jwt": "^5.3.1",
+    "express-unless": "^0.5.0",
+    "jsonwebtoken": "^8.5.0",
     "mongoose": "^5.4.14",
     "uuid": "^3.3.2"
   },

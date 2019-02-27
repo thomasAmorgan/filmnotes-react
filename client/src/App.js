@@ -1,49 +1,41 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import NavBar from "./components/NavBar";
-import RollView from "./components/RollView";
-import { withRouter, Route } from "react-router-dom";
-import QuickStartScreen from "./components/QuickStartScreen";
-import Modal from "./components/Modal";
+import { withRouter, Route, Redirect, Switch } from "react-router-dom";
+import Main from './components/Main';
+import LoadingDisplay from "./components/LoadingDisplay";
+import LandingPage from "./components/LandingPage";
 
 class App extends Component {
-  state = {
-    modal: null
-  };
-
-  componentDidUpdate(prevProps) {
-    if (this.props.modalOpen !== prevProps.modalOpen) {
-      if (this.props.modalOpen) {
-        this.setState({ modal: <Modal /> });
-      } else {
-        this.setState({ modal: null });
-      }
+  checkAuth = () => {
+    const tokenExp = localStorage.getItem('tokenExp');
+    if (tokenExp >= (Date.now().valueOf() / 1000)) {
+      return true;
+    } else {
+      return false;
     }
   }
 
   render() {
     return (
-      <div className="App">
-        <NavBar />
-        <div className="page-content">
-          <Route exact path="/rolls" component={QuickStartScreen} />
-          <Route path="/rolls/:id" component={RollView} />
-          {this.state.modal}
-        </div>
-      </div>
+      <Switch>
+        <Route path="/welcome" component={LandingPage} />
+        <Route path="/" render={() =>
+          this.props.userLoading
+            ? <LoadingDisplay />
+            : (this.checkAuth() ? <Main /> : <Redirect to="/welcome/login" />)
+        } />
+      </Switch>
     );
   }
 }
 
-RollView.protoTypes = {
-  modalOpen: PropTypes.bool,
-  modalMode: PropTypes.object
+App.protoTypes = {
+  userLoading: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({
-  modalOpen: state.rollsCollection.modalOpen,
-  modalMode: state.rollsCollection.modalMode
+  userLoading: state.userAuth.userLoading,
 });
 
 export default withRouter(connect(mapStateToProps)(App));

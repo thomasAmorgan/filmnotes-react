@@ -1,0 +1,39 @@
+.login-register {
+  text-align: center;
+  width: 260px;
+
+  form {
+    -webkit-appearance: none;
+    border-radius: 0;
+    display: flex;
+    flex-flow: column;
+
+    input {
+      -webkit-appearance: none;
+      border-radius: 0;
+      margin: 10px 0;
+      border: none;
+      padding: 10px 5%;
+      font-size: 1rem;
+      font-family: $avenir-book;
+    }
+  }
+
+  button {
+    -webkit-appearance: none;
+    color: $text-white;
+    border-radius: 0;
+    padding: 15px 10%;
+    font-size: 1.2rem;
+    font-family: $futura;
+    border: none;
+    background: $mac-medium-grey;
+
+    &:hover,
+    &:focus {
+      cursor: pointer;
+      background: $green;
+      text-decoration: underline;
+    }
+  }
+}

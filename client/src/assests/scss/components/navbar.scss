@@ -26,6 +26,23 @@
         cursor: pointer;
       }
     }
+
+    button {
+      margin: 10px 0;
+      -webkit-appearance: none;
+      border-radius: 0;
+      border: none;
+      background: $mac-medium-grey;
+      height: 55px;
+      font-size: .8rem;
+
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+        cursor: pointer;
+        background: $red;
+      }
+    }
   }
 
   .sidebar-content {
