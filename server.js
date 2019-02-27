@@ -2,7 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const ejwt = require('express-jwt');
-const unless = require('express-unless');
 
 const keys = require('./config/keys');
 const rolls = require("./routes/rolls");
@@ -13,18 +12,7 @@ const app = express();
 // body-parser middleware
 app.use(bodyParser.json());
 
-app.use(ejwt({ secret: keys.JWT_SECRET })
-  .unless(
-    {
-      path: ['/api/auth',
-        { url: '/api/auth/register', methods: ['POST'] },
-        { url: '/api/auth/authenticate', methods: ['POST'] }
-      ]
-    })
-);
-
-const db = keys.LOCAL_MONGO;
-// const db = keys.MLAB_MONGO;
+const db = keys.MONGODB;
 
 mongoose
   .connect(
@@ -42,7 +30,7 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use('/api/auth', auth);
-app.use('/api/rolls', rolls);
+app.use('/api/rolls', ejwt({ secret: keys.JWT_SECRET }), rolls);
 
 // serve static assests if in production
 if (process.env.NODE_ENV === "production") {
