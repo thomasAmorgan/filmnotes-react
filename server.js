@@ -20,7 +20,7 @@ app.use(ejwt({ secret: keys.JWT_SECRET })
         { url: '/api/auth/register', methods: ['POST'] },
         { url: '/api/auth/authenticate', methods: ['POST'] },
         { url: '/favicon.ico', methods: ['GET'] },
-        { url: '/static/*' },
+        { url: '/static/*', methods: ['GET'] },
         { url: '/' }
       ]
     })
