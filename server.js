@@ -13,18 +13,18 @@ const app = express();
 // body-parser middleware
 app.use(bodyParser.json());
 
-app.use(ejwt({ secret: keys.JWT_SECRET })
-  .unless(
-    {
-      path: ['/api/auth',
-        { url: '/api/auth/register', methods: ['POST'] },
-        { url: '/api/auth/authenticate', methods: ['POST'] },
-        { url: '/favicon.ico', methods: ['GET'] },
-        { url: '/static/*', methods: ['GET'] },
-        { url: '/' }
-      ]
-    })
-);
+// app.use(ejwt({ secret: keys.JWT_SECRET })
+//   .unless(
+//     {
+//       path: ['/api/auth',
+//         { url: '/api/auth/register', methods: ['POST'] },
+//         { url: '/api/auth/authenticate', methods: ['POST'] },
+//         { url: '/favicon.ico', methods: ['GET'] },
+//         { url: '/static/*', methods: ['GET'] },
+//         { url: '/' }
+//       ]
+//     })
+// );
 
 const db = keys.LOCAL_MONGO;
 // const db = keys.MLAB_MONGO;
@@ -45,7 +45,7 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use('/api/auth', auth);
-app.use('/api/rolls', rolls);
+app.use('/api/rolls', ejwt({ secret: keys.JWT_SECRET }), rolls);
 
 // serve static assests if in production
 if (process.env.NODE_ENV === "production") {
