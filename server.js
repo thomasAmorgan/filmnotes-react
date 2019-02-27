@@ -13,14 +13,14 @@ const app = express();
 // body-parser middleware
 app.use(bodyParser.json());
 
-app.use(ejwt({ secret: keys.JWT_SECRET, audience: "/api/rolls" })
+app.use(ejwt({ secret: keys.JWT_SECRET })
   .unless(
     {
       path: ['/api/auth',
         { url: '/api/auth/register', methods: ['POST'] },
         { url: '/api/auth/authenticate', methods: ['POST'] },
         { url: '/favicon.ico', methods: ['GET'] },
-        { url: '/' }
+        { url: '/static/*' }
       ]
     })
 );
