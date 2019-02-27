@@ -13,7 +13,7 @@ const app = express();
 // body-parser middleware
 app.use(bodyParser.json());
 
-app.use(ejwt({ secret: keys.JWT_SECRET })
+app.use(ejwt({ secret: keys.JWT_SECRET, audience: "/api/rolls" })
   .unless(
     {
       path: ['/api/auth',
