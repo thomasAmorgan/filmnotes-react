@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import DatePicker from "react-datepicker";
 import {
   addExposure,
   toggleModal,
@@ -11,12 +12,20 @@ import {
 } from "../actions/rollActions";
 
 class DynamicForm extends Component {
-  state = {};
+  state = {
+    date: new Date(Date.now())
+  };
 
   handleChange = (e, key) => {
-    this.setState({
-      [key]: e.target.value
-    });
+    if (key === "date") {
+      this.setState({
+        [key]: new Date(e)
+      });
+    } else {
+      this.setState({
+        [key]: e.target.value
+      });
+    }
   };
 
   handleSubmit = e => {
@@ -159,6 +168,20 @@ class DynamicForm extends Component {
               placeholder={placeholder}
               {...props}
               defaultValue={value}
+              onChange={(e) => {
+                e.preventDefault();
+                this.handleChange(e, key);
+              }}
+            />
+          </div>
+        );
+      }
+
+      if (key === "date") {
+        inputElement = (
+          <div key={key}>
+            <DatePicker
+              selected={new Date(this.state.date)}
               onChange={e => this.handleChange(e, key)}
             />
           </div>

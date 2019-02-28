@@ -55,6 +55,7 @@ router.post("/", verifyToken, (req, res) => {
     format: req.body.format,
     tags: req.body.tags,
     notes: req.body.notes,
+    date: req.body.date,
     user_id: userEmail
   });
 
@@ -78,7 +79,8 @@ router.patch("/:id", verifyToken, (req, res) => {
       camera: req.body.camera,
       format: req.body.format,
       tags: req.body.tags,
-      notes: req.body.notes
+      notes: req.body.notes,
+      date: req.body.date
     },
     { new: false, upsert: false },
     (err, result) => {
